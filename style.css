@@ -44,11 +44,11 @@ body {
   margin: 0 auto;
 }
 
-/* Texte d'accueil */
+/* Texte d'accueil : même largeur que les photos */
 .accueil {
-  max-width: 34rem;
+  width: min(100% - 2rem, 26rem);
   margin: 2.2rem auto 2.6rem;
-  padding: 0 1.4rem;
+  padding: 0;
   font-size: clamp(1rem, 2.6vw, 1.15rem);
 }
 
