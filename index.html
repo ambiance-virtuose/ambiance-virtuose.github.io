@@ -1,57 +1,113 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Ambiance Virtuose – Figurines, maquettes et créations uniques</title>
-  <meta name="description" content="Ambiance Virtuose personnalise vos projets au millimètre près : figurines, maquettes et créations artistiques uniques.">
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+:root {
+  --nuit: #02294a;
+  --teal: #2fb7cf;
+  --teal-clair: #8fe3ee;
+  --cadre: #0a3558;
+  box-sizing: border-box;
+}
 
-  <a class="contact" href="mailto:contact@exemple.fr">
-    <img src="contact.png" alt="Contactez nous" width="181" height="70">
-  </a>
+*, *::before, *::after { box-sizing: inherit; }
 
-  <header class="entete">
-    <h1><img src="logo.png" alt="Ambiance Virtuose" width="1184" height="234"></h1>
-  </header>
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--teal);
+  font-family: "Segoe UI", Ubuntu, "Helvetica Neue", Arial, sans-serif;
+  font-weight: 300;
+  line-height: 1.6;
+  background-color: var(--nuit);
+  background-image: url("fond.png");
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: 100% auto;
+}
 
-  <main>
-    <p class="accueil">
-      Bienvenue chez Ambiance Virtuose,<br>
-      ici on personnalise vos projets au millimètre près.<br>
-      Figurines, maquettes ou autres créations artistiques uniques.
-    </p>
+/* Bouton de contact (image) en haut à droite */
+.contact {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 10;
+  display: block;
+  width: clamp(64px, 14vw, 96px);
+}
+.contact img { display: block; width: 100%; height: auto; }
+.contact:hover { filter: brightness(1.15); }
 
-    <section class="galerie" aria-label="Créations">
+/* Logo */
+.entete { padding: 1.6rem 1rem 0; }
+.entete h1 { margin: 0; }
+.entete img {
+  display: block;
+  width: min(86%, 26rem);
+  height: auto;
+  margin: 0 auto;
+}
 
-      <article class="creation">
-        <img class="photo" src="photo%201.png" alt="Coupelle en forme de cœur rouge, bordée de petites briques, avec une coccinelle et une fleur bleue" width="1368" height="989">
-        <details>
-          <summary>description</summary>
-          <p>Décris ici cette création : matériaux, dimensions, temps de réalisation.</p>
-        </details>
-      </article>
+/* Texte d'accueil : même largeur que les photos */
+.accueil {
+  width: min(100% - 2rem, 26rem);
+  margin: 2.2rem auto 2.6rem;
+  padding: 0;
+  font-size: clamp(1rem, 2.6vw, 1.15rem);
+}
 
-      <article class="creation">
-        <img class="photo" src="photo%202.png" alt="Vide-poche noir bordé de feuilles d'automne orange, avec une icône ancienne et des bagues" width="1355" height="1332" loading="lazy">
-        <details>
-          <summary>description</summary>
-          <p>Décris ici cette création : matériaux, dimensions, temps de réalisation.</p>
-        </details>
-      </article>
+/* Galerie */
+.galerie {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.4rem;
+  padding: 0 1rem 4rem;
+}
 
-      <article class="creation">
-        <img class="photo" src="photo%203.png" alt="Cloche en verre sur socle en bois avec un bonhomme de neige, un sapin, des champignons bleus et des citrouilles" width="1362" height="1811" loading="lazy">
-        <details>
-          <summary>description</summary>
-          <p>Décris ici cette création : matériaux, dimensions, temps de réalisation.</p>
-        </details>
-      </article>
+.creation { width: min(100%, 26rem); }
 
-    </section>
-  </main>
+.photo {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: var(--cadre);
+  color: var(--teal);
+  font-size: 0.85rem;
+  border-radius: 8px;
+}
 
-</body>
-</html>
+/* Description déroulante */
+details { margin-top: 0.4rem; }
+
+summary {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.2rem;
+  list-style: none;
+  cursor: pointer;
+  font-size: 1.15rem;
+  color: var(--teal);
+}
+summary::-webkit-details-marker { display: none; }
+summary::after {
+  content: "";
+  width: 1.6rem;
+  height: 1.35rem;
+  background: url("fleche%20description.png") center / contain no-repeat;
+  transition: transform 0.2s ease;
+}
+details[open] summary::after { transform: rotate(180deg); }
+
+details p {
+  margin: 0.6rem 0 0;
+  padding: 0.8rem 1rem;
+  background: rgba(10, 53, 88, 0.75);
+  border-left: 3px solid var(--teal);
+}
+
+a:focus-visible, summary:focus-visible {
+  outline: 2px solid var(--teal-clair);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  summary::after { transition: none; }
+}
