@@ -111,3 +111,11 @@ a:focus-visible, summary:focus-visible {
 @media (prefers-reduced-motion: reduce) {
   summary::after { transition: none; }
 }
+
+/* Téléphone uniquement : texte plus clair */
+@media (max-width: 600px) {
+  .accueil,
+  summary {
+    color: var(--teal-clair);
+  }
+}
