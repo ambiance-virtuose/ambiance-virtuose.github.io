@@ -1,0 +1,139 @@
+:root {
+  --nuit: #03203f;
+  --nuit-profond: #021528;
+  --fleur: #0b4a78;
+  --teal: #2fb7cf;
+  --teal-clair: #8fe3ee;
+  --cadre: #0a3558;
+  box-sizing: border-box;
+}
+
+*, *::before, *::after { box-sizing: inherit; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--teal);
+  font-family: "Segoe UI", Ubuntu, "Helvetica Neue", Arial, sans-serif;
+  font-weight: 300;
+  line-height: 1.6;
+  /* images/fond.png (optionnel) se superpose au dégradé ; sans ce fichier, seul le dégradé s'affiche */
+  background:
+    url("images/fond.png") center top / cover fixed,
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='460' height='460' viewBox='0 0 100 100'%3E%3Cg fill='%230b4a78' opacity='.55' transform='translate(50 50)'%3E%3Cellipse rx='9' ry='24' cy='-24'/%3E%3Cellipse rx='9' ry='24' cy='-24' transform='rotate(60)'/%3E%3Cellipse rx='9' ry='24' cy='-24' transform='rotate(120)'/%3E%3Cellipse rx='9' ry='24' cy='-24' transform='rotate(180)'/%3E%3Cellipse rx='9' ry='24' cy='-24' transform='rotate(240)'/%3E%3Cellipse rx='9' ry='24' cy='-24' transform='rotate(300)'/%3E%3C/g%3E%3C/svg%3E") 60% 18% / 460px no-repeat,
+    linear-gradient(180deg, var(--nuit-profond), var(--nuit) 40%, var(--nuit-profond));
+  background-color: var(--nuit);
+}
+
+/* Bouton de contact */
+.contact {
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  z-index: 10;
+  padding: 2px 8px;
+  background: var(--teal);
+  color: var(--nuit-profond);
+  font-size: 0.8rem;
+  font-weight: 400;
+  line-height: 1.15;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 2px;
+}
+.contact:hover { background: var(--teal-clair); }
+
+/* En-tête : logo et nom */
+.entete {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  padding: 2.2rem 1rem 0;
+}
+.logo-av { width: clamp(90px, 22vw, 140px); height: auto; flex: none; }
+
+.nom {
+  margin: 0;
+  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+  font-style: italic;
+  font-weight: 800;
+  font-size: clamp(1.9rem, 6vw, 3rem);
+  line-height: 1;
+  color: var(--teal);
+}
+.nom span { display: inline-block; margin-left: 1.6rem; }
+
+/* Texte d'accueil */
+.accueil {
+  max-width: 34rem;
+  margin: 2rem auto 2.5rem;
+  padding: 0 1.2rem;
+  font-size: clamp(1rem, 2.6vw, 1.15rem);
+}
+
+/* Galerie */
+.galerie {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+  padding: 0 1rem 4rem;
+}
+
+.creation { width: min(100%, 26rem); }
+
+.creation figure {
+  margin: 0;
+  background: var(--cadre);
+  min-height: 12rem;
+}
+.creation img {
+  display: block;
+  width: 100%;
+  height: auto;
+  color: var(--teal);
+  font-size: 0.85rem;
+}
+
+/* Description déroulante */
+details { margin-top: 0.4rem; }
+
+summary {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.4rem;
+  list-style: none;
+  cursor: pointer;
+  font-size: 1.15rem;
+  color: var(--teal);
+}
+summary::-webkit-details-marker { display: none; }
+summary::after {
+  content: "";
+  width: 1.1rem;
+  height: 1.1rem;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 7l9 11 9-11'/%3E%3C/svg%3E") center / contain no-repeat;
+  transition: transform 0.2s ease;
+}
+details[open] summary::after { transform: rotate(180deg); }
+
+details p {
+  margin: 0.6rem 0 0;
+  padding: 0.8rem 1rem;
+  background: rgba(10, 53, 88, 0.7);
+  border-left: 3px solid var(--teal);
+}
+
+a:focus-visible, summary:focus-visible {
+  outline: 2px solid var(--teal-clair);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  summary::after { transition: none; }
+}
